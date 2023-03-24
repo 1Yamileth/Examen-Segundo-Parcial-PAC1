@@ -53,11 +53,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(13, 87);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 18);
+            this.label2.Size = new System.Drawing.Size(124, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "CONTRASEÑA:";
             // 
@@ -73,11 +74,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 18);
+            this.label1.Size = new System.Drawing.Size(84, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "USUARIO:";
             // 
@@ -100,6 +102,7 @@
             // 
             // Cancelar_Button
             // 
+            this.Cancelar_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Cancelar_Button.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cancelar_Button.Image = global::Vista.Properties.Resources.boton_x;
             this.Cancelar_Button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,8 +133,11 @@
             // 
             // Form1
             // 
+            this.AcceptButton = this.Ingresar_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Plum;
+            this.CancelButton = this.Cancelar_Button;
             this.ClientSize = new System.Drawing.Size(539, 191);
             this.ControlBox = false;
             this.Controls.Add(this.Mostrar_button);

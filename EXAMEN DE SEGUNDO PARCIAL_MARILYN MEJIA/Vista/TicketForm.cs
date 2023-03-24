@@ -19,7 +19,9 @@ namespace Vista
         }
 
         TicketDB ticketDB = new TicketDB();
+        Ticket ticket = new Ticket();
         ClienteDB clienteDB = new ClienteDB();
+        Cliente cliente = null;
         
         decimal precio = 0;
         decimal isv = 0;
@@ -34,8 +36,9 @@ namespace Vista
             NombretextBox.Clear();
             Problema_textBox.Clear();
             RespuestatextBox.Clear();
-            SoportetextBox.Clear();
-            PreciotextBox.Clear();
+            SoportecomboBox.Text = string.Empty;
+            NumerotextBox.Clear();
+            SubtotaltextBox.Clear();
             DescuentotextBox.Clear();
             ISVtextBox.Clear();
             TotaltextBox.Clear();
@@ -52,57 +55,37 @@ namespace Vista
 
         private void TicketForm_Load(object sender, EventArgs e)
         {
-            Random rnd = new Random();
 
-            // Generamos un número aleatorio entre 1 y 100
-            int numeroAleatorio = rnd.Next(1, 101);
-            NumerotextBox.Text = Convert.ToString (numeroAleatorio);
+            
 
-
-          //  CodigotextBox.Text = System.Threading.Thread.CurrentPrincipal.Identity.Name;
+            CodigotextBox.Text = System.Threading.Thread.CurrentPrincipal.Identity.Name;
         }
 
        
         private void GenerarBoletobutton_Click(object sender, EventArgs e)
         {
-            Cliente clien = new Cliente();
-            clien.IdentidadCliente = IdentidadtextBox.Text;
-            clien.Nombre = NombretextBox.Text;
-            clien.Email = CorreotextBox.Text;
 
-            bool inserto = clienteDB.InsertarCliente(clien);//Si "inserto" trae un ture es porque si hay usuario nuevo
-            if (inserto)
-            {
-                limpiarcontroles();
-
-                MessageBox.Show("CLIENTE GUARDADO SATISFACTORIAMENTE");
-            }
-            else
-            {
-                MessageBox.Show("CLIENTE NO GUARDADO ");
-
-            }
-
-
-            subtotal = Convert.ToDecimal(PreciotextBox.Text);
+            subtotal = Convert.ToDecimal(SubtotaltextBox.Text);
             descuento = Convert.ToDecimal(DescuentotextBox.Text);
+
             isv = subtotal * 0.15M;
             total = subtotal + isv - descuento;
             Ticket miticket = new Ticket();
+            miticket.CodigoTicket =Convert.ToInt32(NumerotextBox.Text);
             miticket.Fecha = FechadateTimePicker.Value;
             miticket.CodigoUsuario = CodigotextBox.Text;
             miticket.IdentidadCliente = IdentidadtextBox.Text;
-            miticket.TipoSoporte = SoportetextBox.Text;
+            miticket.TipoSoporte = SoportecomboBox.Text;
             miticket.DescripcionSolicitud = Problema_textBox.Text;
             miticket.DescripcionRespuesta = RespuestatextBox.Text;
-            miticket.Precio = precio;
+            miticket.Subtotal= subtotal;
             miticket.Descuento = descuento;
             miticket.ISV = isv;
             miticket.Total = total;
 
             bool insertacion = ticketDB.GuardarTicket(miticket);
 
-            if (insertacion)
+            if (insertacion )
             {
                 limpiarcontroles();
                 IdentidadtextBox.Focus();
@@ -113,6 +96,58 @@ namespace Vista
                 MessageBox.Show("NO SE PUDO GENERAR EL BOLETO ");
 
             }
+        }
+
+        
+        private void IdentidadtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter && !string.IsNullOrEmpty(IdentidadtextBox.Text))
+            {
+                cliente = new Cliente();
+                cliente = clienteDB.DevolverClientePorId(IdentidadtextBox.Text);
+                NombretextBox.Text = cliente.Nombre;
+                ;
+            }
+            else
+            {
+                cliente = null;
+                NombretextBox.Clear();
+            }
+        }
+
+        private void Buscrabutton_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter && !string.IsNullOrEmpty(IdentidadtextBox.Text))
+            {
+                cliente = new Cliente();
+                cliente = clienteDB.DevolverClientePorId(IdentidadtextBox.Text);
+                NombretextBox.Text = cliente.Nombre;
+                ;
+            }
+            else
+            {
+                cliente = null;
+                NombretextBox.Clear();
+            }
+        }
+
+        private void Ticketbutton_Click(object sender, EventArgs e)
+        {
+           
+                List<int> numerosGenerados = new List<int>();
+                Random rnd = new Random();
+                int numeroAleatorio = rnd.Next(0,200);
+
+                while (numerosGenerados.Contains(numeroAleatorio))
+                {
+                    numeroAleatorio = rnd.Next();
+                }
+
+                numerosGenerados.Add(numeroAleatorio);
+
+                NumerotextBox.Text = numeroAleatorio.ToString();
+            
+
         }
     }
 }

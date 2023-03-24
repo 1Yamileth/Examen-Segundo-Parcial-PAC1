@@ -13,40 +13,46 @@ namespace BD
     public class ClienteDB
     {
         string cadena = "server=localhost; user= root; database=examen_segundoparcial; password=Cinemax_tNt89";
-        public bool InsertarCliente(Cliente cliente)
+       
+
+        public Cliente DevolverClientePorId(string identidadCliente)
         {
-            bool inserto = false;
+            Cliente clien = null;
+
             try
             {
                 StringBuilder sql = new StringBuilder();
 
-              
-                sql.Append("INSERT INTO cliente VALUES ");
-                sql.Append("( @IdentidadCliente, @Nombre, @Email); ");
+                
+                sql.Append("SELECT * FROM cliente WHERE IdentidadCliente=@IdentidadCliente  ");
+
+
                 using (MySqlConnection _conexion = new MySqlConnection(cadena))
                 {
                     _conexion.Open();
                     using (MySqlCommand comando = new MySqlCommand(sql.ToString(), _conexion))
                     {
-                        
-                        comando.CommandType = CommandType.Text;
-
                        
-                        comando.Parameters.Add("@IdentidadCliente", MySqlDbType.VarChar, 20).Value = cliente.IdentidadCliente;
-                        comando.Parameters.Add("@Nombre", MySqlDbType.VarChar, 50).Value = cliente.Nombre;
-                        comando.Parameters.Add("@Email", MySqlDbType.VarChar, 45).Value = cliente.Email;
-                        comando.ExecuteNonQuery();
-                        inserto = true;
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@IdentidadCliente", MySqlDbType.VarChar, 20).Value = identidadCliente;
+                        MySqlDataReader dr = comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            clien = new Cliente();
+                            clien.IdentidadCliente = identidadCliente;
+                            clien.Nombre = dr["Nombre"].ToString();
+                        }
                     }
                 }
 
             }
             catch (System.Exception ex)
             {
-                //MessageBox.Show("error al insertar: "+ ex.Message);
+                MessageBox.Show("error al insertar: "+ ex.Message);
             }
 
-            return inserto;
+                return clien;
         }
+
     }
 }

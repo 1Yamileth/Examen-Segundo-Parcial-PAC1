@@ -39,9 +39,9 @@ namespace Vista
             Usuario user = new Usuario();
             UsuarioDB usuarioBD = new UsuarioDB();
 
-          //  System.Security.Principal.GenericIdentity identidad = new System.Security.Principal.GenericIdentity(Usuario_textBox.Text);
-         //   System.Security.Principal.GenericPrincipal principal = new System.Security.Principal.GenericPrincipal(identidad, null);
-          //  System.Threading.Thread.CurrentPrincipal = principal;
+            System.Security.Principal.GenericIdentity identidad = new System.Security.Principal.GenericIdentity(Usuario_textBox.Text);
+            System.Security.Principal.GenericPrincipal principal = new System.Security.Principal.GenericPrincipal(identidad, null);
+            System.Threading.Thread.CurrentPrincipal = principal;
 
             user = usuarioBD.Autenticar(login);
             if (user != null)

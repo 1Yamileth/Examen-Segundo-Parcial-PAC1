@@ -29,17 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.SoportecomboBox = new System.Windows.Forms.ComboBox();
             this.NumerotextBox = new System.Windows.Forms.TextBox();
             this.label = new System.Windows.Forms.Label();
-            this.SoportetextBox = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.RespuestatextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.Problema_textBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.CorreotextBox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.NombretextBox = new System.Windows.Forms.TextBox();
             this.IdentidadtextBox = new System.Windows.Forms.TextBox();
@@ -53,13 +51,15 @@
             this.DescuentotextBox = new System.Windows.Forms.TextBox();
             this.TotaltextBox = new System.Windows.Forms.TextBox();
             this.ISVtextBox = new System.Windows.Forms.TextBox();
-            this.PreciotextBox = new System.Windows.Forms.TextBox();
+            this.SubtotaltextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.Cancelarbutton = new System.Windows.Forms.Button();
             this.GenerarBoletobutton = new System.Windows.Forms.Button();
+            this.Cancelarbutton = new System.Windows.Forms.Button();
+            this.Ticketbutton = new System.Windows.Forms.Button();
+            this.Buscrabutton = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,9 +67,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.Ticketbutton);
+            this.groupBox3.Controls.Add(this.SoportecomboBox);
             this.groupBox3.Controls.Add(this.NumerotextBox);
             this.groupBox3.Controls.Add(this.label);
-            this.groupBox3.Controls.Add(this.SoportetextBox);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.RespuestatextBox);
             this.groupBox3.Controls.Add(this.label7);
@@ -83,11 +84,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "BOLETO";
             // 
+            // SoportecomboBox
+            // 
+            this.SoportecomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SoportecomboBox.FormattingEnabled = true;
+            this.SoportecomboBox.Items.AddRange(new object[] {
+            "Reparacion de Hardware.",
+            "Mantenimiento de software.",
+            "Configuracion y personalizacion.",
+            "Soporte tecnico remoto."});
+            this.SoportecomboBox.Location = new System.Drawing.Point(489, 25);
+            this.SoportecomboBox.Name = "SoportecomboBox";
+            this.SoportecomboBox.Size = new System.Drawing.Size(241, 26);
+            this.SoportecomboBox.TabIndex = 13;
+            // 
             // NumerotextBox
             // 
-            this.NumerotextBox.Location = new System.Drawing.Point(489, 65);
+            this.NumerotextBox.Location = new System.Drawing.Point(489, 62);
             this.NumerotextBox.Name = "NumerotextBox";
-            this.NumerotextBox.Size = new System.Drawing.Size(241, 26);
+            this.NumerotextBox.Size = new System.Drawing.Size(69, 26);
             this.NumerotextBox.TabIndex = 12;
             // 
             // label
@@ -99,13 +114,6 @@
             this.label.TabIndex = 11;
             this.label.Text = "Ticket:";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // SoportetextBox
-            // 
-            this.SoportetextBox.Location = new System.Drawing.Point(489, 25);
-            this.SoportetextBox.Name = "SoportetextBox";
-            this.SoportetextBox.Size = new System.Drawing.Size(241, 26);
-            this.SoportetextBox.TabIndex = 10;
             // 
             // label15
             // 
@@ -152,8 +160,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.CorreotextBox);
-            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.Buscrabutton);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.NombretextBox);
             this.groupBox2.Controls.Add(this.IdentidadtextBox);
@@ -166,26 +173,10 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "CLIENTE";
             // 
-            // CorreotextBox
-            // 
-            this.CorreotextBox.Location = new System.Drawing.Point(86, 56);
-            this.CorreotextBox.Name = "CorreotextBox";
-            this.CorreotextBox.Size = new System.Drawing.Size(238, 26);
-            this.CorreotextBox.TabIndex = 11;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(9, 62);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 18);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "Correo:";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 28);
+            this.label5.Location = new System.Drawing.Point(435, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 18);
             this.label5.TabIndex = 9;
@@ -193,22 +184,23 @@
             // 
             // NombretextBox
             // 
-            this.NombretextBox.Location = new System.Drawing.Point(86, 20);
+            this.NombretextBox.Location = new System.Drawing.Point(515, 23);
             this.NombretextBox.Name = "NombretextBox";
             this.NombretextBox.Size = new System.Drawing.Size(238, 26);
             this.NombretextBox.TabIndex = 8;
             // 
             // IdentidadtextBox
             // 
-            this.IdentidadtextBox.Location = new System.Drawing.Point(523, 20);
+            this.IdentidadtextBox.Location = new System.Drawing.Point(95, 25);
             this.IdentidadtextBox.Name = "IdentidadtextBox";
             this.IdentidadtextBox.Size = new System.Drawing.Size(238, 26);
             this.IdentidadtextBox.TabIndex = 6;
+            this.IdentidadtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdentidadtextBox_KeyPress);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(446, 26);
+            this.label4.Location = new System.Drawing.Point(18, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 18);
             this.label4.TabIndex = 0;
@@ -299,13 +291,13 @@
             this.ISVtextBox.Size = new System.Drawing.Size(130, 26);
             this.ISVtextBox.TabIndex = 21;
             // 
-            // PreciotextBox
+            // SubtotaltextBox
             // 
-            this.PreciotextBox.Font = new System.Drawing.Font("Candara", 11.25F);
-            this.PreciotextBox.Location = new System.Drawing.Point(135, 339);
-            this.PreciotextBox.Name = "PreciotextBox";
-            this.PreciotextBox.Size = new System.Drawing.Size(130, 26);
-            this.PreciotextBox.TabIndex = 20;
+            this.SubtotaltextBox.Font = new System.Drawing.Font("Candara", 11.25F);
+            this.SubtotaltextBox.Location = new System.Drawing.Point(135, 339);
+            this.SubtotaltextBox.Name = "SubtotaltextBox";
+            this.SubtotaltextBox.Size = new System.Drawing.Size(130, 26);
+            this.SubtotaltextBox.TabIndex = 20;
             // 
             // label11
             // 
@@ -347,6 +339,18 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Precio:";
             // 
+            // GenerarBoletobutton
+            // 
+            this.GenerarBoletobutton.Image = global::Vista.Properties.Resources.boleto;
+            this.GenerarBoletobutton.Location = new System.Drawing.Point(628, 371);
+            this.GenerarBoletobutton.Name = "GenerarBoletobutton";
+            this.GenerarBoletobutton.Size = new System.Drawing.Size(172, 49);
+            this.GenerarBoletobutton.TabIndex = 26;
+            this.GenerarBoletobutton.Text = "GENERAR BOLETO";
+            this.GenerarBoletobutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.GenerarBoletobutton.UseVisualStyleBackColor = true;
+            this.GenerarBoletobutton.Click += new System.EventHandler(this.GenerarBoletobutton_Click);
+            // 
             // Cancelarbutton
             // 
             this.Cancelarbutton.Font = new System.Drawing.Font("Candara", 11.25F);
@@ -360,17 +364,25 @@
             this.Cancelarbutton.UseVisualStyleBackColor = true;
             this.Cancelarbutton.Click += new System.EventHandler(this.Cancelarbutton_Click);
             // 
-            // GenerarBoletobutton
+            // Ticketbutton
             // 
-            this.GenerarBoletobutton.Image = global::Vista.Properties.Resources.boleto;
-            this.GenerarBoletobutton.Location = new System.Drawing.Point(628, 371);
-            this.GenerarBoletobutton.Name = "GenerarBoletobutton";
-            this.GenerarBoletobutton.Size = new System.Drawing.Size(172, 49);
-            this.GenerarBoletobutton.TabIndex = 26;
-            this.GenerarBoletobutton.Text = "GENERAR BOLETO";
-            this.GenerarBoletobutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.GenerarBoletobutton.UseVisualStyleBackColor = true;
-            this.GenerarBoletobutton.Click += new System.EventHandler(this.GenerarBoletobutton_Click);
+            this.Ticketbutton.Image = global::Vista.Properties.Resources.recibo;
+            this.Ticketbutton.Location = new System.Drawing.Point(577, 57);
+            this.Ticketbutton.Name = "Ticketbutton";
+            this.Ticketbutton.Size = new System.Drawing.Size(44, 35);
+            this.Ticketbutton.TabIndex = 14;
+            this.Ticketbutton.UseVisualStyleBackColor = true;
+            this.Ticketbutton.Click += new System.EventHandler(this.Ticketbutton_Click);
+            // 
+            // Buscrabutton
+            // 
+            this.Buscrabutton.Image = global::Vista.Properties.Resources.lupa;
+            this.Buscrabutton.Location = new System.Drawing.Point(339, 20);
+            this.Buscrabutton.Name = "Buscrabutton";
+            this.Buscrabutton.Size = new System.Drawing.Size(43, 34);
+            this.Buscrabutton.TabIndex = 10;
+            this.Buscrabutton.UseVisualStyleBackColor = true;
+            this.Buscrabutton.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Buscrabutton_KeyPress);
             // 
             // TicketForm
             // 
@@ -383,7 +395,7 @@
             this.Controls.Add(this.DescuentotextBox);
             this.Controls.Add(this.TotaltextBox);
             this.Controls.Add(this.ISVtextBox);
-            this.Controls.Add(this.PreciotextBox);
+            this.Controls.Add(this.SubtotaltextBox);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -425,19 +437,19 @@
         private System.Windows.Forms.TextBox DescuentotextBox;
         private System.Windows.Forms.TextBox TotaltextBox;
         private System.Windows.Forms.TextBox ISVtextBox;
-        private System.Windows.Forms.TextBox PreciotextBox;
+        private System.Windows.Forms.TextBox SubtotaltextBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button Cancelarbutton;
-        private System.Windows.Forms.TextBox SoportetextBox;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox NumerotextBox;
         private System.Windows.Forms.Label label;
-        private System.Windows.Forms.TextBox CorreotextBox;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button GenerarBoletobutton;
+        private System.Windows.Forms.Button Buscrabutton;
+        private System.Windows.Forms.ComboBox SoportecomboBox;
+        private System.Windows.Forms.Button Ticketbutton;
     }
 }
